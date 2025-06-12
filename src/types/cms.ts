@@ -85,3 +85,52 @@ export interface CMSData {
     description: string;
   };
 }
+
+// New types for dynamic pages
+export interface PageSection {
+  id: string;
+  type: 'hero' | 'text' | 'image' | 'gallery' | 'features' | 'testimonials' | 'contact';
+  title?: string;
+  content?: string;
+  imageUrl?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  order: number;
+  settings?: Record<string, any>;
+}
+
+export interface DynamicPage {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt: string;
+  sections: PageSection[];
+  seoTitle?: string;
+  seoDescription?: string;
+  featuredImage?: string;
+}
+
+export interface CMSSettings {
+  siteName: string;
+  siteDescription: string;
+  primaryColor: string;
+  secondaryColor: string;
+  logo?: string;
+  favicon?: string;
+  socialLinks: {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+    linkedin?: string;
+  };
+}
+
+export interface CMSState {
+  data: CMSData;
+  pages: DynamicPage[];
+  settings: CMSSettings;
+  isEditing: boolean;
+}
